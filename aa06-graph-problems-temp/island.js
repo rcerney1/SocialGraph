@@ -50,17 +50,33 @@ console.log(getNeighbors(0, 0, matrix))
 function islandSize(row, col, graph) {
 
   // Create a visited set to store visited nodes
+  // Put the stringified starting node in visited
+  const v = new Set([`${row}, ${col}`]);
 
   // Create a stack, put the starting node in the stack
+  const queue = [[row, col]]
 
-  // Put the stringified starting node in visited
+ 
+
 
   // Initialize size to 0
+  let size = 0;
 
   // While the stack is not empty,
-
+  while(queue.length){
     // Pop the first node
-
+    let currentNode = queue.shift();
+    size++;
+    let neighbors = getNeighbors(currentNode[0], currentNode[1], graph);
+    neighbors.forEach(ele => {
+      let string = `${ele[0]}, ${ele[1]}`
+      if(!v.has(string)){
+        v.add(string)
+        queue.push(ele)
+      }
+    })
+  }
+  return size;
     // DO THE THING (increment size by 1)
 
     // Then push all the UNVISITED neighbors on top of the stack
