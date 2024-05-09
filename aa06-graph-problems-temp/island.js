@@ -1,17 +1,50 @@
 function getNeighbors(row, col, graph) {
 
-  // Check top
+  let top = [row - 1, col];
+  let bottom = [row + 1, col];
+  let left = [row, col - 1];
+  let right = [row, col + 1];
 
-  // Check bottom
+  let neighbor = [top, bottom, left, right];
 
-  // Check left
+  let res = [];
 
-  // Check right
+  neighbor.forEach(ele => {
+    let x = ele[0]
+    let y = ele[1]
+
+    if(x >= 0 && y >=0 && x < graph.length && y < graph[0].length){
+      if(graph[x][y] === 1){
+        res.push(ele);
+      }
+    }
+
+
+
+  })
+  return res
+
+
+  // Check top// row -1, col, if < 0, don't add
+
+
+  // Check bottom // row + 1, col if > matrix.length
+
+  // Check left // row, col-1  if < 0, don't add
+
+  // Check right // row, col +1 if > matrix.length, don't add
 
   // Return neighbors
 
-  // Your code here 
+  // Your code here
 }
+matrix = [
+  [1,1,1,0,0],
+  [0,1,1,0,1],
+  [0,1,1,0,1],
+]
+
+console.log(getNeighbors(0, 0, matrix))
 
 
 function islandSize(row, col, graph) {
@@ -37,7 +70,7 @@ function islandSize(row, col, graph) {
 
   // return size
 
-  // Your code here 
+  // Your code here
 }
 
 module.exports = [getNeighbors, islandSize];
